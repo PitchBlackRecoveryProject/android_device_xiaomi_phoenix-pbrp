@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       # new all-in-one docker image 2
-      - image: fr3akyphantom/droid-builder:latest
+      - image: fr3akyphantom/droid-runner:latest
     environment:
       MANIFEST_BRANCH: 'android-10.0'
       USE_SECRET_BOOTABLE: 'true'
