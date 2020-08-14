@@ -2,36 +2,35 @@ version: 2.1
 jobs:
   build:
     docker:
-      # new all-in-one docker image 2
-      - image: fr3akyphantom/droid-runner:latest
+      # Use this New Image for Starting things up
+      - image: fr3akyphantom/droid-runner:latest # DO Not Change
     environment:
       MANIFEST_BRANCH: 'android-10.0'
-      USE_SECRET_BOOTABLE: 'true'
-      SECRET_BR: 'android-10.0'
-      MAINTAINER: 'PBRP TEAM'
+      VERSION: '3.0.0-test'
+      MAINTAINER: 'PBRP Team'
       VENDOR: 'xiaomi'
-      CODENAME: 'phoenix'
+      CODENAME: 'joyeuse'
       BUILD_LUNCH: 'omni_phoenix-eng'
-      # Remove the following when Publishing Official
+      FLAVOR: "eng"
       TEST_BUILD: 'true'
-      # Only for Official Build, uncomment following
-      # PB_OFFICIAL: 'true'
-      CHANGELOG: "-"
-    working_directory: /home/builder/pitchblack
+      #EXTRA_CMD: "rm -rf build/soong && git clone https://github.com/PitchBlackRecoveryProject/android_build_soong -b android-10-fixes build/soong && rm -rf vendor/pb && git clone https://github.com/PitchBlackRecoveryProject/vendor_pb -b pb-10.0 vendor/pb"
+      CHANGELOG: |
+         Initial Test Build
+    working_directory: /home/builder/
     steps:
-      - checkout
+      - setup_remote_docker:
+          version: 19.03.8
       - run:
-          name: AIO Build
+          name: "ALL IN REMOTE"
           command: |
-            echo "Set GitAuth Infos too"
-            git config --global user.email $GitHubMail
-            git config --global user.name $GitHubName
-            git config --global color.ui true
-            wget -q https://raw.githubusercontent.com/PitchBlackRecoveryProject/vendor_utils/Tess/remote_build.sh
-            source remote_build.sh
+            curl -sL https://raw.githubusercontent.com/PitchBlackRecoveryProject/vendor_utils/Tess/remote_build.sh -o build.sh
+            source build.sh
 workflows:
   version: 2
-  build_and_test:
+  remote_builder:
     jobs:
       - build:
+          filters:
+            branches:
+              only: 'android-10.0'
           context: org-global
