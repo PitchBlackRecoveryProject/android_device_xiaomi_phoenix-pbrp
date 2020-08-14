@@ -9,7 +9,7 @@ jobs:
       VERSION: '3.0.0-test'
       MAINTAINER: 'PBRP Team'
       VENDOR: 'xiaomi'
-      CODENAME: 'joyeuse'
+      CODENAME: 'phoenix'
       BUILD_LUNCH: 'omni_phoenix-eng'
       FLAVOR: "eng"
       TEST_BUILD: 'true'
