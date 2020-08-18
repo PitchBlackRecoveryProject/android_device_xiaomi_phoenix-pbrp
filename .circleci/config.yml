@@ -8,7 +8,7 @@ jobs:
       MANIFEST_BRANCH: 'android-10.0'
       VERSION: '3.0.0'
       USE_SECRET_BOOTABLE: 'true'
-      SECRET_BR: 'trans'
+      SECRET_BR: 'android-10.0'
       MAINTAINER: 'PBRP Team'
       VENDOR: 'xiaomi'
       CODENAME: 'phoenix'
