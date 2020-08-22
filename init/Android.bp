@@ -1,0 +1,12 @@
+cc_library_static {
+    name: "libinit_phoenix",
+    include_dirs: [
+        "system/core/base/include",
+        "system/core/init",
+    ],
+    cflags: [
+        "-Wall",
+    ],
+    srcs: ["init_phoenix.cpp"],
+    recovery_available: true,
+}

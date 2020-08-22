@@ -73,7 +73,13 @@ BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 #TARGET_USE_SDCLANG := true
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := phoenix
+TARGET_OTA_ASSERT_DEVICE := phoenix, phoenixin
+
+# Init
+
+TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_phoenix
+TARGET_RECOVERY_DEVICE_MODULES := libinit_phoenix
+TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
 
 # Avb
 BOARD_AVB_ENABLE := true
