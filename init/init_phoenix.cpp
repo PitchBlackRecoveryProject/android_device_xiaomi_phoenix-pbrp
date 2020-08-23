@@ -76,8 +76,9 @@ void vendor_load_properties() {
     const std::string region = GetProperty("ro.boot.hwc", "");
 
 	if (region == "INDIA") {
-            model_property_override("phoenixin", "Poco X2");
-	    } else {
+            model_property_override("phoenixin", "POCO X2");
+	    }
+	else if (region == "CN") {
             model_property_override("phoenix", "Redmi K30");
     	  }
 }
