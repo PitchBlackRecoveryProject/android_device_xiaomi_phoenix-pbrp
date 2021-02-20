@@ -12,17 +12,17 @@ jobs:
     steps:
        - name: Recovery Compilation
          uses: Area69Lab/Recovery-Compiler@production
-    env:
-      MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-10.0"
-      DT_LINK: "https://github.com/PitchBlackRecoveryProject/android_device_xiaomi_phoenix-pbrp"
-      VENDOR: "xiaomi"
-      CODENAME: "phoenix"
-      KERNELISPREBUILT: "true"
-      TARGET: "recoveryimage"
-      FLAVOR: "eng"
-      TZ: "Asia/Kolkata"
-      - uses: actions/upload-artifact@v2
-        with:
+         env:
+           MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-10.0"
+           DT_LINK: "https://github.com/PitchBlackRecoveryProject/android_device_xiaomi_phoenix-pbrp"
+           VENDOR: "xiaomi"
+           CODENAME: "phoenix"
+           KERNELISPREBUILT: "true"
+           TARGET: "recoveryimage"
+           FLAVOR: "eng"
+           TZ: "Asia/Kolkata"
+       - uses: actions/upload-artifact@v2
+         with:
           name: ${{ env.CODENAME }}_${{ env.TARGET }}-zip
           path: work/out/target/product/${{ env.CODENAME }}/*.zip
 
