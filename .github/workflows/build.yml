@@ -22,7 +22,6 @@ jobs:
       FLAVOR: "eng"
       TZ: "Asia/Kolkata"
 
-
       - uses: actions/upload-artifact@v2
         with:
           name: ${{ env.CODENAME }}_${{ env.TARGET }}-zip
