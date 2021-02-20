@@ -7,19 +7,9 @@ on:
   watch:
     types: [started]
 
-env:
-  MANIFEST: git://github.com/PitchBlackRecoveryProject/manifest_pb.git -b android-10.0
-  DEVICE: phoenix
-  DT_LINK: https://github.com/hraj9258/pbrp_phoenix -b android-10.0
-  DT_PATH: device/xiaomi/phoenix
-  CHAT_ID: ${{ secrets.BOT_CHAT_ID }}
-  BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-  TARGET: recoveryimage
-  TZ: Asia/Kolkata
-
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
        - name: Recovery Compilation
