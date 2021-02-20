@@ -1,8 +1,6 @@
 name: Test Build
 on:
   push:
-    branches: [ 'android-10.0' ]
-
   workflow_dispatch:
   watch:
     types: [started]
@@ -23,3 +21,10 @@ jobs:
       TARGET: "recoveryimage"
       FLAVOR: "eng"
       TZ: "Asia/Kolkata"
+
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.CODENAME }}_${{ env.TARGET }}-zip
+          path: work/out/target/product/${{ env.CODENAME }}/*.zip
+
