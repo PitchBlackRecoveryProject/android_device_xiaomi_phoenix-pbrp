@@ -13,7 +13,7 @@ jobs:
        - name: Recovery Compilation
          uses: Area69Lab/Recovery-Compiler@production
     env:
-      MANIFEST: "Recovery Manifest URL with -b branch"
+      MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-10.0"
       DT_LINK: "https://github.com/PitchBlackRecoveryProject/android_device_xiaomi_phoenix-pbrp"
       VENDOR: "xiaomi"
       CODENAME: "phoenix"
