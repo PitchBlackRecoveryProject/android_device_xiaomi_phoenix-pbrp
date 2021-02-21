@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
        - name: export PATHS
@@ -28,5 +28,5 @@ jobs:
        - uses: actions/upload-artifact@v2
          with:
           name: ${{ env.CODENAME }}_${{ env.TARGET }}-zip
-          path: work/out/target/product/${{ env.CODENAME }}/*.zip
+          path: work/out/target/product/*/*.zip
 
