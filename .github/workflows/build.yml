@@ -15,7 +15,7 @@ jobs:
            echo "/usr/local/bin" >> $GITHUB_PATH
            echo "/home/runner/bin" >> $GITHUB_PATH
        - name: Recovery Compilation
-         uses: Area69Lab/Recovery-Compiler@production
+         uses: Area69Lab/Recovery-Compiler@beta
          env:
            MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-10.0"
            DT_LINK: "https://github.com/PitchBlackRecoveryProject/android_device_xiaomi_phoenix-pbrp"
