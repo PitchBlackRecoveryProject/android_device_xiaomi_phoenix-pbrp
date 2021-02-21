@@ -10,10 +10,6 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-       - name: export PATHS
-         run: |
-           echo "/usr/local/bin" >> $GITHUB_PATH
-           echo "/home/runner/bin" >> $GITHUB_PATH
        - name: Recovery Compilation
          uses: Area69Lab/Recovery-Compiler@beta
          env:
@@ -27,6 +23,5 @@ jobs:
            TZ: "Asia/Kolkata"
        - uses: actions/upload-artifact@v2
          with:
-          name: ${{ env.CODENAME }}_${{ env.TARGET }}-zip
           path: work/out/target/product/*/*.zip
 
