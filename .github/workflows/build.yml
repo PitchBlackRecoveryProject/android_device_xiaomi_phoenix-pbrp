@@ -11,7 +11,7 @@ jobs:
 
     steps:
        - name: Recovery Compilation
-         uses: Area69Lab/Recovery-Compiler@beta
+         uses: Area69Lab/Recovery-Compiler@production
          env:
            MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-10.0"
            DT_LINK: "https://github.com/PitchBlackRecoveryProject/android_device_xiaomi_phoenix-pbrp"
