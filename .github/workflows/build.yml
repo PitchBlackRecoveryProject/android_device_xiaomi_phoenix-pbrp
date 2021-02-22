@@ -22,17 +22,11 @@ jobs:
            FLAVOR: "eng"
            TZ: "Asia/Kolkata"
 
-       - name: Generate build number
-         id: buildnumber
-         uses: einaregilsson/build-number@v3 
-         with:
-          token: ${{secrets.github_token}}
-
        - name: Release Builds
          uses: "marvinpinto/action-automatic-releases@latest"
          with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "${{needs.build.outputs.build_number}}"
+          automatic_release_tag: "${{env.RANDOM}}"
           prerelease: false
           title: "CI"
           files: |
