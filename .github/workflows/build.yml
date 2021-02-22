@@ -37,5 +37,4 @@ jobs:
           title: "CI"
           files: |
               work/out/target/product/${{ env.CODENAME }}/*.zip
-              work/out/target/product/${{ env.CODENAME }}/recovery.img
-              work/out/target/product/${{ env.CODENAME }}/boot.img
+              work/out/target/product/${{ env.CODENAME }}/*.img
