@@ -22,11 +22,19 @@ jobs:
            FLAVOR: "eng"
            TZ: "Asia/Kolkata"
 
-       - uses: "marvinpinto/action-automatic-releases@latest"
-         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          prerelease: false
-          title: "Development Build"
-          files: |
-            work/out/target/product/*/*.zip
+      - name: Generate build number
+        id: buildnumber
+        uses: einaregilsson/build-number@v3 
+        with:
+         token: ${{secrets.github_token}}
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+         repo_token: "${{ secrets.GITHUB_TOKEN }}"
+         automatic_release_tag: "${{needs.build.outputs.build_number}}"
+         prerelease: false
+         title: "CI"
+         files: |
+             work/out/target/product/${{ env.CODENAME }}/*.zip
+             work/out/target/product/${{ env.CODENAME }}/recovery.img
+             work/out/target/product/${{ env.CODENAME }}/boot.img
