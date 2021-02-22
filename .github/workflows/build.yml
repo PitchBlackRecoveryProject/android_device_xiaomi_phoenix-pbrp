@@ -28,7 +28,8 @@ jobs:
          with:
           token: ${{secrets.github_token}}
 
-       - uses: "marvinpinto/action-automatic-releases@latest"
+       - name: Release Builds
+         uses: "marvinpinto/action-automatic-releases@latest"
          with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "${{needs.build.outputs.build_number}}"
