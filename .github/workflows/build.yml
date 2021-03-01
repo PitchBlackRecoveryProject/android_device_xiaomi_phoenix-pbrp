@@ -5,24 +5,28 @@ on:
   watch:
     types: [started]
 
+env:
+  MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-10.0"
+  DT_LINK: "https://github.com/PitchBlackRecoveryProject/android_device_xiaomi_phoenix-pbrp"
+  VENDOR: "xiaomi"
+  CODENAME: "phoenix"
+  TARGET: "recoveryimage"
+  FLAVOR: "eng"
+  TZ: "Asia/Kolkata"
+  BUILD_RELEASE_TYPE: "Test"
+  BOT_API: ${{ secrets.BOT_API }}
+  GCF_AUTH_KEY: ${{ secrets.GCF_AUTH_KEY }}
+  GH_BOT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
+  GitHubMail: ${{ secrets.GitHubMail }}
+  GitHubName: ${{ secrets.GitHubName }}
+  SFPassword: ${{ secrets.SFPassword }}
+  SFUserName: ${{ secrets.SFUserName }}
+
 jobs:
   build:
     runs-on: ubuntu-20.04
 
     steps:
-       - name: Recovery Compilation
-         if: env.TEST != 'true'
-         uses: Carbonatedblack/Recovery-Compiler@production
-         env:
-           MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-10.0"
-           DT_LINK: "https://github.com/PitchBlackRecoveryProject/android_device_xiaomi_phoenix-pbrp"
-           VENDOR: "xiaomi"
-           CODENAME: "phoenix"
-           KERNELISPREBUILT: "true"
-           TARGET: "recoveryimage"
-           FLAVOR: "eng"
-           TZ: "Asia/Kolkata"
-           
        - name: Mock Build
          if: env.TEST == 'true'
          run: |
