@@ -11,7 +11,7 @@ jobs:
 
     steps:
        - name: Recovery Compilation
-         if: false
+         if: env.TEST != 'true'
          uses: Carbonatedblack/Recovery-Compiler@production
          env:
            MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-10.0"
@@ -24,7 +24,7 @@ jobs:
            TZ: "Asia/Kolkata"
            
        - name: Mock Build
-         if: true
+         if: env.TEST == 'true'
          run: |
           # Mock Official Build
           mkdir -p work/out/target/product/phoenix
