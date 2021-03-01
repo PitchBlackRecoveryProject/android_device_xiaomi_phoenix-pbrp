@@ -11,6 +11,7 @@ jobs:
 
     steps:
        - name: Recovery Compilation
+         if: false
          uses: Carbonatedblack/Recovery-Compiler@production
          env:
            MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-10.0"
@@ -21,6 +22,13 @@ jobs:
            TARGET: "recoveryimage"
            FLAVOR: "eng"
            TZ: "Asia/Kolkata"
+           
+       - name: Mock Build
+         if: true
+         run: |
+          # Mock Official Build
+          touch work/out/target/product/phoenix/PBRP-RMX1941-3.0.0-20210214-2119-OFFICIAL.zip
+          touch work/out/target/product/phoenix/recovery.img
 
        - name: Release Builds
          uses: "marvinpinto/action-automatic-releases@latest"
