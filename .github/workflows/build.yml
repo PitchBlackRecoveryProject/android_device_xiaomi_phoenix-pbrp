@@ -34,13 +34,8 @@ jobs:
           touch work/out/target/product/phoenix/PBRP-RMX1941-3.0.0-20210214-2119-OFFICIAL.zip
           touch work/out/target/product/phoenix/recovery.img
 
-       - name: Release Builds
-         uses: "marvinpinto/action-automatic-releases@latest"
-         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          prerelease: false
-          title: "CI"
-          files: |
-              work/out/target/product/*/*.zip
-              work/out/target/product/*/*.img
+       - name: Setup Deps
+         run: |
+             sudo apt-get install sshpass -y
+             sudo snap install --classic --channel=1.15/stable go 
+             go get -u github.com/tcnksm/ghr
