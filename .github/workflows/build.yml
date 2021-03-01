@@ -28,7 +28,6 @@ jobs:
 
     steps:
        - name: Mock Build
-         if: env.TEST == 'true'
          run: |
           # Mock Official Build
           mkdir -p work/out/target/product/phoenix
