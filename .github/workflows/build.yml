@@ -43,6 +43,7 @@ jobs:
        - name: PB deploy
          run: |
               cd work
+              export GITHUB_TOKEN="$GH_BOT_TOKEN"
               git clone https://github.com/PitchBlackRecoveryProject/vendor_utils vendor/utils
               git clone https://github.com/PitchBlackRecoveryProject/android_bootable_recovery bootable/recovery
               wget https://raw.githubusercontent.com/PitchBlackRecoveryProject/vendor_utils/pb/pb_deploy.sh
