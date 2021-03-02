@@ -44,4 +44,5 @@ jobs:
          run: |
               cd work
               git clone https://github.com/PitchBlackRecoveryProject/vendor_utils vendor/utils
-              curl https://raw.githubusercontent.com/PitchBlackRecoveryProject/vendor_utils/pb/pb_deploy.sh | bash
+              wget https://raw.githubusercontent.com/PitchBlackRecoveryProject/vendor_utils/pb/pb_deploy.sh
+              bash pb_deploy.sh ${BUILD_RELEASE_TYPE} ${VENDOR} ${CODENAME}
