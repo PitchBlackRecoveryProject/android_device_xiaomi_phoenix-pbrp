@@ -2,8 +2,6 @@ name: Test Build
 on:
   push:
   workflow_dispatch:
-  watch:
-    types: [started]
 
 env:
   MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-10.0"
@@ -27,26 +25,25 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-       - name: Mock Build
-         run: |
+      - name: Mock Build
+        run: |
           # Mock Official Build
           mkdir -p work/out/target/product/phoenix
           cd work/out/target/product/phoenix
           wget https://github.com/PitchBlackRecoveryProject/android_device_xiaomi_phoenix-pbrp/releases/download/null/PBRP-phoenix-3.0.0-20210222-1745-UNOFFICIAL.zip
           wget https://github.com/PitchBlackRecoveryProject/android_device_xiaomi_phoenix-pbrp/releases/download/null/recovery.img
 
-       - name: Setup Deps
-         run: |
-             sudo apt-get install sshpass -y
-             sudo snap install --classic --channel=1.15/stable go
+      - name: Setup Deps
+        run: |
+          sudo apt-get install sshpass -y
+          curl -s https://api.github.com/repos/tcnksm/ghr/releases/latest \
+            | jq -r '.assets[] | select(.browser_download_url | contains("linux_amd64")) | .browser_download_url' | wget -qi -
+          tar -xzf ghr_*_amd64.tar.gz --wildcards 'ghr*/ghr' --strip-components 1
+          sudo mv ./ghr /usr/local/bin/ && rm -rf ghr_*_amd64.tar.gz
 
-       - name: PB deploy
-         run: |
-              cd work
-              git clone https://github.com/PitchBlackRecoveryProject/vendor_utils vendor/utils
-              git clone https://github.com/PitchBlackRecoveryProject/android_bootable_recovery bootable/recovery
-              curl -s https://api.github.com/repos/tcnksm/ghr/releases/latest \
-              | jq -r '.assets[] | select(.browser_download_url | contains("linux_amd64")) | .browser_download_url' | wget -qi -
-              tar -xzf ghr_*_amd64.tar.gz --wildcards 'ghr*/ghr' --strip-components 1
-              sudo mv ./ghr /usr/local/bin/ && rm -rf ghr_*_amd64.tar.gz
-              bash vendor/utils/pb_deploy.sh ${BUILD_RELEASE_TYPE} ${VENDOR} ${CODENAME}
+      - name: PB deploy
+        run: |
+          cd work
+          git clone https://github.com/PitchBlackRecoveryProject/vendor_utils vendor/utils
+          git clone https://github.com/PitchBlackRecoveryProject/android_bootable_recovery bootable/recovery
+          bash vendor/utils/pb_deploy.sh ${BUILD_RELEASE_TYPE} ${VENDOR} ${CODENAME}
