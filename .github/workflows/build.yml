@@ -36,8 +36,7 @@ jobs:
       - name: Setup Deps
         run: |
           sudo apt-get install sshpass -y
-          curl -s https://api.github.com/repos/tcnksm/ghr/releases/latest \
-            | jq -r '.assets[] | select(.browser_download_url | contains("linux_amd64")) | .browser_download_url' | wget -qi -
+          curl -s https://api.github.com/repos/tcnksm/ghr/releases/latest | jq -r '.assets[] | select(.browser_download_url | contains("linux_amd64")) | .browser_download_url' | wget -qi -
           tar -xzf ghr_*_amd64.tar.gz --wildcards 'ghr*/ghr' --strip-components 1
           sudo mv ./ghr /usr/local/bin/ && rm -rf ghr_*_amd64.tar.gz
 
