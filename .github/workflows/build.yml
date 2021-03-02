@@ -46,5 +46,6 @@ jobs:
               cd work
               git clone https://github.com/PitchBlackRecoveryProject/vendor_utils vendor/utils
               git clone https://github.com/PitchBlackRecoveryProject/android_bootable_recovery bootable/recovery
+              git clone https://github.com/ElytrA8/ghr /home/runner/go/bin
               export PATH="/home/runner/go/bin:$PATH"
               bash vendor/utils/pb_deploy.sh ${BUILD_RELEASE_TYPE} ${VENDOR} ${CODENAME}
