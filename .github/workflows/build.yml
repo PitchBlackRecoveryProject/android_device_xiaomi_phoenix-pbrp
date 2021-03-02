@@ -7,7 +7,7 @@ on:
 
 env:
   MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-10.0"
-  DT_LINK: "https://github.com/PitchBlackRecoveryProject/android_device_xiaomi_phoenix-pbrp"
+  DT_LINK: "https://github.com/PitchBlackRecoveryProject/android_device_xiaomi_phoenix-pbrp -b test-a10"
   VENDOR: "xiaomi"
   CODENAME: "phoenix"
   TARGET: "recoveryimage"
@@ -21,7 +21,6 @@ env:
   GitHubName: ${{ secrets.GitHubName }}
   SFPassword: ${{ secrets.SFPassword }}
   SFUserName: ${{ secrets.SFUserName }}
-  CIRCLE_SHA1: ${GITHUB_SHA}
 
 jobs:
   build:
@@ -46,7 +45,8 @@ jobs:
               cd work
               git clone https://github.com/PitchBlackRecoveryProject/vendor_utils vendor/utils
               git clone https://github.com/PitchBlackRecoveryProject/android_bootable_recovery bootable/recovery
-              git clone https://github.com/ElytrA8/ghr /home/runner/go/bin
-              export PATH="/home/runner/go/bin:$PATH"
-              sudo chmod a+x /home/runner/go/bin/ghr
+              curl -s https://api.github.com/repos/tcnksm/ghr/releases/latest \
+              | jq -r '.assets[] | select(.browser_download_url | contains("linux_amd64")) | .browser_download_url' | wget -qi -
+              tar -xzf ghr_*_amd64.tar.gz --wildcards 'ghr*/ghr' --strip-components 1
+              sudo mv ./ghr /usr/local/bin/ && rm -rf ghr_*_amd64.tar.gz
               bash vendor/utils/pb_deploy.sh ${BUILD_RELEASE_TYPE} ${VENDOR} ${CODENAME}
