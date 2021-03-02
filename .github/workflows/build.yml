@@ -31,7 +31,7 @@ jobs:
          run: |
           # Mock Official Build
           mkdir -p work/out/target/product/phoenix
-          touch work/out/target/product/phoenix/PBRP-phoenix-3.0.0-20210214-2119-OFFICIAL.zip
+          touch work/out/target/product/phoenix/PBRP-phoenix-3.0.0-20210214-2119-UNOFFICIAL.zip
           touch work/out/target/product/phoenix/recovery.img
 
        - name: Setup Deps
