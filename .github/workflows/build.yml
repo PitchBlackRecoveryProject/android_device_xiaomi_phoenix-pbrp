@@ -16,7 +16,7 @@ env:
   BUILD_RELEASE_TYPE: "TEST"
   BOT_API: ${{ secrets.BOT_API }}
   GCF_AUTH_KEY: ${{ secrets.GCF_AUTH_KEY }}
-  GH_BOT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
+  GH_BOT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GitHubMail: ${{ secrets.GitHubMail }}
   GitHubName: ${{ secrets.GitHubName }}
   SFPassword: ${{ secrets.SFPassword }}
