@@ -32,8 +32,9 @@ jobs:
          run: |
           # Mock Official Build
           mkdir -p work/out/target/product/phoenix
-          touch work/out/target/product/phoenix/PBRP-phoenix-3.0.0-20210214-2119-UNOFFICIAL.zip
-          touch work/out/target/product/phoenix/recovery.img
+          cd work/out/target/product/phoenix
+          wget https://github.com/PitchBlackRecoveryProject/android_device_xiaomi_phoenix-pbrp/releases/download/null/PBRP-phoenix-3.0.0-20210222-1745-UNOFFICIAL.zip
+          wget https://github.com/PitchBlackRecoveryProject/android_device_xiaomi_phoenix-pbrp/releases/download/null/recovery.img
 
        - name: Setup Deps
          run: |
