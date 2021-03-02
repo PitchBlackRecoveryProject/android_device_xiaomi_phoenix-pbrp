@@ -38,8 +38,7 @@ jobs:
        - name: Setup Deps
          run: |
              sudo apt-get install sshpass -y
-             sudo snap install --classic --channel=1.15/stable go 
-             go get -u github.com/tcnksm/ghr
+             sudo snap install --classic --channel=1.15/stable go
 
        - name: PB deploy
          run: |
