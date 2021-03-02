@@ -13,7 +13,7 @@ env:
   TARGET: "recoveryimage"
   FLAVOR: "eng"
   TZ: "Asia/Kolkata"
-  BUILD_RELEASE_TYPE: "Test"
+  BUILD_RELEASE_TYPE: "TEST"
   BOT_API: ${{ secrets.BOT_API }}
   GCF_AUTH_KEY: ${{ secrets.GCF_AUTH_KEY }}
   GH_BOT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
@@ -39,3 +39,9 @@ jobs:
              sudo apt-get install sshpass -y
              sudo snap install --classic --channel=1.15/stable go 
              go get -u github.com/tcnksm/ghr
+
+       - name: PB deploy
+         run: |
+              cd work
+              git clone https://github.com/PitchBlackRecoveryProject/vendor_utils vendor/utils
+              curl https://raw.githubusercontent.com/PitchBlackRecoveryProject/vendor_utils/pb/pb_deploy.sh | bash
