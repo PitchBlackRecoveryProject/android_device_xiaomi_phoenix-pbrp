@@ -43,11 +43,8 @@ jobs:
        - name: PB deploy
          run: |
               cd work
-              export GITHUB_TOKEN="$GH_BOT_TOKEN"
               git clone https://github.com/PitchBlackRecoveryProject/vendor_utils vendor/utils
               git clone https://github.com/PitchBlackRecoveryProject/android_bootable_recovery bootable/recovery
               wget https://raw.githubusercontent.com/PitchBlackRecoveryProject/vendor_utils/pb/pb_deploy.sh
-              curl -s https://api.github.com/repos/tcnksm/ghr/releases/latest | jq -r '.assets[] | select(.browser_download_url | contains("linux_amd64")) | .browser_download_url' | wget -qi -
-              tar -xzf ghr_*_amd64.tar.gz --wildcards 'ghr*/ghr' --strip-components 1 && rm -rf ghr_*_amd64.tar.gz
-              chmod a+x ./ghr 
+              export PATH="/home/runner/go/bin:$PATH"
               bash pb_deploy.sh ${BUILD_RELEASE_TYPE} ${VENDOR} ${CODENAME}
