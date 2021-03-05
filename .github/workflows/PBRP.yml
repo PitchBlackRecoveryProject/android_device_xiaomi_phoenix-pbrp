@@ -12,7 +12,7 @@ env:
   TARGET: "recoveryimage"
   FLAVOR: "eng"
   MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-10.0"
-  DT_LINK: "https://github.com/$GITHUB_REPOSITORY -b android-10.0"
+  DT_LINK: "https://github.com/PitchBlackRecoveryProject/android_device_xiaomi_phoenix-pbrp -b android-10.0"
   TZ: "Asia/Kolkata"
   BOT_API: ${{ secrets.BOT_API }}
   GCF_AUTH_KEY: ${{ secrets.GCF_AUTH_KEY }}
