@@ -11,8 +11,7 @@ env:
   BUILD_RELEASE_TYPE: "TEST"
   TARGET: "recoveryimage"
   FLAVOR: "eng"
-  MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-10.0"
-  DT_LINK: "https://github.com/PitchBlackRecoveryProject/android_device_xiaomi_phoenix-pbrp -b android-10.0"
+  MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb"
   TZ: "Asia/Kolkata"
   BOT_API: ${{ secrets.BOT_API }}
   GCF_AUTH_KEY: ${{ secrets.GCF_AUTH_KEY }}
@@ -29,7 +28,14 @@ jobs:
     steps:
        - name: Cleaning Up Runner
          uses: rokibhasansagar/slimhub_actions@main
-         
+
+       - name: Env Setup
+         run: |
+              echo "$MANIFEST=$MANIFEST -b ${GITHUB_REF##*/}" >> $GITHUB_ENV
+              echo "DT_LINK=https://github.com/$GITHUB_REPOSITORY -b ${GITHUB_REF##*/}" >> $GITHUB_ENV
+              echo $MANIFEST;
+              echo $DT_LINK;
+
        - name: Recovery Compilation
          uses: Carbonatedblack/Recovery-Compiler@production
          
