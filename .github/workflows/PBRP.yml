@@ -31,9 +31,9 @@ jobs:
 
        - name: Env Setup
          run: |
-              $t="$MANIFEST -b ${GITHUB_REF##*/}"
+              t="$MANIFEST -b ${GITHUB_REF##*/}"
               echo "$MANIFEST=$t" >> $GITHUB_ENV
-              $t="https://github.com/$GITHUB_REPOSITORY -b ${GITHUB_REF##*/}"
+              t="https://github.com/$GITHUB_REPOSITORY -b ${GITHUB_REF##*/}"
               echo "DT_LINK=$t" >> $GITHUB_ENV
               echo $MANIFEST;
               echo $DT_LINK;
