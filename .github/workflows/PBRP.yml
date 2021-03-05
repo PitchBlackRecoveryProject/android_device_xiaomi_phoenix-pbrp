@@ -35,7 +35,7 @@ jobs:
          
        - name: Release Builds
          run: |
-              sudo apt-get install sshpass -y
+              sudo apt-get update && sudo apt-get install sshpass -y
               export CIRCLE_SHA1=$GITHUB_SHA
               cd work
               bash vendor/utils/pb_deploy.sh ${BUILD_RELEASE_TYPE} ${VENDOR} ${CODENAME}
