@@ -11,8 +11,8 @@ env:
   BUILD_RELEASE_TYPE: "TEST"
   TARGET: "recoveryimage"
   FLAVOR: "eng"
-  MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb -b ${{ env.GITHUB_REF#refs/heads/}}"
-  DT_LINK: "https://github.com/${GITHUB_REPOSITORY} -b ${{ env.GITHUB_REF#refs/heads/}}"
+  MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb -b $GITHUB_REF#refs/heads/"
+  DT_LINK: "https://github.com/${GITHUB_REPOSITORY} -b $GITHUB_REF#refs/heads/"
   TZ: "Asia/Kolkata"
   BOT_API: ${{ secrets.BOT_API }}
   GCF_AUTH_KEY: ${{ secrets.GCF_AUTH_KEY }}
