@@ -27,6 +27,9 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
+       - name: Cleaning Up Runner
+         uses: rokibhasansagar/slimhub_actions@main
+         
        - name: Recovery Compilation
          uses: Carbonatedblack/Recovery-Compiler@production
          
