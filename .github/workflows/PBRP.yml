@@ -28,9 +28,9 @@ jobs:
          uses: rokibhasansagar/slimhub_actions@main
 
        - name: Recovery Compilation and Release
-         uses: Carbonatedblack/Recovery-Compiler@production
+         uses: Carbonatedblack/Recovery-Compiler@beta
          run: |
               sudo apt-get update && sudo apt-get install sshpass -y
               export CIRCLE_SHA1=$GITHUB_SHA
-              cd work
+              cd $BuildPath
               bash vendor/utils/pb_deploy.sh ${BUILD_RELEASE_TYPE} ${VENDOR} ${CODENAME}              
