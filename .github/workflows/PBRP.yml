@@ -1,4 +1,4 @@
-name: PBRP CI/CD
+name: PBRP
 on:
   push:
   workflow_dispatch:
@@ -23,6 +23,7 @@ env:
 
 jobs:
   PBRP_CI:
+    if: "(! contains(toJSON(github.event.commits.*.message), '[skip-ci]'))"
     runs-on: ubuntu-latest
 
     steps:
