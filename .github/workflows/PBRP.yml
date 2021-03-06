@@ -6,8 +6,6 @@ on:
     types: [started]
 
 env:
-  VENDOR: "xiaomi"
-  CODENAME: "phoenix"
   BUILD_RELEASE_TYPE: "TEST"
   TARGET: "recoveryimage"
   FLAVOR: "eng"
@@ -26,25 +24,13 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-       #- name: Cleaning Up Runner
-       #  uses: rokibhasansagar/slimhub_actions@main
+       - name: Cleaning Up Runner
+         uses: rokibhasansagar/slimhub_actions@main
 
-       - name: Env Setup
-         run: |
-              t="$MANIFEST -b ${GITHUB_REF##*/}"
-              echo "$MANIFEST=$t" >> $GITHUB_ENV
-              t="https://github.com/$GITHUB_REPOSITORY -b ${GITHUB_REF##*/}"
-              echo "DT_LINK=$t" >> $GITHUB_ENV
-              echo $MANIFEST;
-              echo $DT_LINK;
-
-       - name: Recovery Compilation
+       - name: Recovery Compilation and Release
          uses: Carbonatedblack/Recovery-Compiler@production
-         
-       - name: Release Builds
          run: |
               sudo apt-get update && sudo apt-get install sshpass -y
               export CIRCLE_SHA1=$GITHUB_SHA
               cd work
-              bash vendor/utils/pb_deploy.sh ${BUILD_RELEASE_TYPE} ${VENDOR} ${CODENAME}
-              
+              bash vendor/utils/pb_deploy.sh ${BUILD_RELEASE_TYPE} ${VENDOR} ${CODENAME}              
