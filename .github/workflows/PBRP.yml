@@ -38,5 +38,7 @@ jobs:
               sudo apt-get update && sudo apt-get install sshpass -y
               export CIRCLE_SHA1=$GITHUB_SHA
               cd $BuildPath
+              echo ${BUILD_RELEASE_TYPE}
               if [[ ! -z "${BUILD_RELEASE_TYPE}" ]]; then export BUILD_RELEASE_TYPE="TEST" ;fi
-              bash vendor/utils/pb_deploy.sh ${BUILD_RELEASE_TYPE} ${VENDOR} ${CODENAME}              
+              echo ${BUILD_RELEASE_TYPE}
+              bash vendor/utils/pb_deploy.sh ${BUILD_RELEASE_TYPE} ${VENDOR} ${CODENAME}
