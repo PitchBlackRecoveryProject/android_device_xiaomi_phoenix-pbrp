@@ -29,9 +29,7 @@ jobs:
 
        - name: Recovery Compilation and Release
          uses: Carbonatedblack/Recovery-Compiler@beta
-       
-       - name: Release Builds 
-         run: |
+       - run: |
               sudo apt-get update && sudo apt-get install sshpass -y
               export CIRCLE_SHA1=$GITHUB_SHA
               cd $BuildPath
