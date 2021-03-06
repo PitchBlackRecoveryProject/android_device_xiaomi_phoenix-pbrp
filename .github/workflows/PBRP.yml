@@ -2,15 +2,17 @@ name: PBRP CI/CD
 on:
   push:
   workflow_dispatch:
+    inputs:
+      DEPLOY_TYPE:
+        description: 'Deploy Type (TEST/BETA/OFFICIAL)'
+        required: true
+        default: 'TEST'
   watch:
     types: [started]
 
 env:
   BUILD_RELEASE_TYPE: "TEST"
-  TARGET: "recoveryimage"
-  FLAVOR: "eng"
   MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb"
-  TZ: "Asia/Kolkata"
   BOT_API: ${{ secrets.BOT_API }}
   GCF_AUTH_KEY: ${{ secrets.GCF_AUTH_KEY }}
   GH_BOT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -20,8 +22,8 @@ env:
   SFUserName: ${{ secrets.SFUserName }}
 
 jobs:
-  compilation:
-    runs-on: ubuntu-20.04
+  PBRP_CI:
+    runs-on: ubuntu-latest
 
     steps:
        - name: Cleaning Up Runner
@@ -29,7 +31,10 @@ jobs:
 
        - name: Recovery Compilation and Release
          uses: Carbonatedblack/Recovery-Compiler@beta
-       - run: |
+       
+       - name: Release Builds 
+         run: |
+              [[ ! -z ${{ github.event.inputs.DEPLOY_TYPE }} ]] && BUILD_RELEASE_TYPE=${{ github.event.inputs.DEPLOY_TYPE }}
               sudo apt-get update && sudo apt-get install sshpass -y
               export CIRCLE_SHA1=$GITHUB_SHA
               cd $BuildPath
