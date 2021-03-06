@@ -11,7 +11,7 @@ on:
     types: [started]
 
 env:
-  BUILD_RELEASE_TYPE: "TEST"
+  BUILD_RELEASE_TYPE: ${{ github.event.inputs.DEPLOY_TYPE }}
   MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-10.0"
   BOT_API: ${{ secrets.BOT_API }}
   GCF_AUTH_KEY: ${{ secrets.GCF_AUTH_KEY }}
@@ -34,7 +34,6 @@ jobs:
        
        - name: Release Builds 
          run: |
-              [[ ! -z ${{ github.event.inputs.DEPLOY_TYPE }} ]] && BUILD_RELEASE_TYPE=${{ github.event.inputs.DEPLOY_TYPE }}
               sudo apt-get update && sudo apt-get install sshpass -y
               export CIRCLE_SHA1=$GITHUB_SHA
               cd $BuildPath
