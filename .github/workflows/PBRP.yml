@@ -12,7 +12,7 @@ on:
 
 env:
   BUILD_RELEASE_TYPE: "TEST"
-  MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb"
+  MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-10.0"
   BOT_API: ${{ secrets.BOT_API }}
   GCF_AUTH_KEY: ${{ secrets.GCF_AUTH_KEY }}
   GH_BOT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
