@@ -11,7 +11,7 @@ on:
     types: [started]
 
 env:
-  BUILD_RELEASE_TYPE: ${{ github.event.inputs.DEPLOY_TYPE }}
+  BUILD_RELEASE_TYPE: "TEST"
   MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-10.0"
   BOT_API: ${{ secrets.BOT_API }}
   GCF_AUTH_KEY: ${{ secrets.GCF_AUTH_KEY }}
@@ -30,15 +30,13 @@ jobs:
        - name: Cleaning Up Runner
          uses: rokibhasansagar/slimhub_actions@main
 
-       - name: Recovery Compilation and Release
+       - name: Recovery Compilation
          uses: Carbonatedblack/Recovery-Compiler@beta
        
        - name: Release Builds 
          run: |
               sudo apt-get update && sudo apt-get install sshpass -y
               export CIRCLE_SHA1=$GITHUB_SHA
-              cd $BuildPath
-              echo ${BUILD_RELEASE_TYPE}
-              if [[ ! -z "${BUILD_RELEASE_TYPE}" ]]; then export BUILD_RELEASE_TYPE="TEST" ;fi
-              echo ${BUILD_RELEASE_TYPE}
+              cd $BuildPath 
+              if [[ ! -z "${{ github.event.inputs.DEPLOY_TYPE }}" ]]; then export BUILD_RELEASE_TYPE="TEST" ;fi
               bash vendor/utils/pb_deploy.sh ${BUILD_RELEASE_TYPE} ${VENDOR} ${CODENAME}
