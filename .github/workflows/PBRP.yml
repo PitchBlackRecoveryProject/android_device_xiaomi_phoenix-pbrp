@@ -12,7 +12,6 @@ on:
 
 env:
   BUILD_RELEASE_TYPE: ${{ github.event.inputs.DEPLOY_TYPE }}
-  MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-10.0"
   BOT_API: ${{ secrets.BOT_API }}
   GCF_AUTH_KEY: ${{ secrets.GCF_AUTH_KEY }}
   GH_BOT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -29,6 +28,9 @@ jobs:
     steps:
        - name: Cleaning Up Runner
          uses: rokibhasansagar/slimhub_actions@main
+
+       - name: Auto Adapt Manifest
+         run: echo "MANIFEST=https://github.com/PitchBlackRecoveryProject/manifest_pb -b ${GITHUB_REF##*/}" >> $GITHUB_ENV
 
        - name: Recovery Compilation
          uses: Carbonatedblack/Recovery-Compiler@beta
