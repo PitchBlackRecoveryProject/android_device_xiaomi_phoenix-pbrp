@@ -1,6 +1,5 @@
 name: PBRP
 on:
-  push:
   workflow_dispatch:
     inputs:
       DEPLOY_TYPE:
