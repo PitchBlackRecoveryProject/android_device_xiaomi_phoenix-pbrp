@@ -11,7 +11,7 @@ on:
     types: [started]
 
 env:
-  BUILD_RELEASE_TYPE: "TEST"
+  BUILD_RELEASE_TYPE: ${{ github.event.inputs.DEPLOY_TYPE }}
   MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-10.0"
   BOT_API: ${{ secrets.BOT_API }}
   GCF_AUTH_KEY: ${{ secrets.GCF_AUTH_KEY }}
