@@ -19,6 +19,7 @@ env:
   GitHubName: ${{ secrets.GitHubName }}
   SFPassword: ${{ secrets.SFPassword }}
   SFUserName: ${{ secrets.SFUserName }}
+  #TARGET: "define this if your target is not recoveryimage"
 
 jobs:
   PBRP_CI:
