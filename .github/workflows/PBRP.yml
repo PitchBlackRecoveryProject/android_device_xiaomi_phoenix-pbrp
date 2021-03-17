@@ -33,7 +33,7 @@ jobs:
          run: echo "MANIFEST=https://github.com/PitchBlackRecoveryProject/manifest_pb -b ${GITHUB_REF##*/}" >> $GITHUB_ENV
 
        - name: Recovery Compilation
-         uses: Carbonatedblack/Recovery-Compiler@beta
+         uses: Carbonatedblack/Recovery-Compiler@production
        
        - name: Release Builds 
          run: |
