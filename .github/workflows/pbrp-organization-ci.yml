@@ -10,8 +10,6 @@ on:
         description: 'Build ChangeLogs'
         required: true
         default: 'Sync Latest Source'
-  watch:
-    types: [started]
 
 env:
   BUILD_RELEASE_TYPE: ${{ github.event.inputs.DEPLOY_TYPE }}
@@ -19,6 +17,7 @@ env:
   BOT_API: ${{ secrets.BOT_API }}
   GCF_AUTH_KEY: ${{ secrets.GCF_AUTH_KEY }}
   GH_BOT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GH_SECRET_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
   GitHubMail: ${{ secrets.GitHubMail }}
   GitHubName: ${{ secrets.GitHubName }}
   SFPassword: ${{ secrets.SFPassword }}
@@ -36,17 +35,22 @@ jobs:
          uses: rokibhasansagar/slimhub_actions@main
 
        - name: Auto Adapt Manifest
-         run: echo "MANIFEST=https://github.com/PitchBlackRecoveryProject/manifest_pb -b ${GITHUB_REF##*/}" >> $GITHUB_ENV
+         run: |
+              echo "MANIFEST=https://pbrp-bot:$GH_SECRET_TOKEN@github.com/PitchBlackRecoveryProject/manifest -b ${GITHUB_REF##*/}" >> $GITHUB_ENV
 
        - name: Export Vars
          run: |
               if [[ ${BUILD_RELEASE_TYPE} == "TEST" ]]; then echo "TEST_BUILD=true"  >> $GITHUB_ENV;fi
               if [[ ${BUILD_RELEASE_TYPE} == "BETA" ]]; then echo "BETA_BUILD=true"  >> $GITHUB_ENV;fi
               if [[ ${BUILD_RELEASE_TYPE} == "OFFICIAL" ]]; then echo "PB_OFFICIAL=true"  >> $GITHUB_ENV;fi
+              echo "USE_SECRET_BOOTABLE=true"  >> $GITHUB_ENV
+              git config --global user.email pitchblackrecovery@gmail.com
+              git config --global user.name pbrp-bot
+              echo "machine github.com login $GH_SECRET_TOKEN password x-oauth-basic" > $HOME/.netrc
 
        - name: Recovery Compilation
-         uses: Carbonatedblack/Recovery-Compiler@production
-       
+         uses: PitchBlackRecoveryProject/Recovery-Compiler@production
+
        - name: Release Builds 
          run: |
               sudo apt-get update && sudo apt-get install sshpass -y
