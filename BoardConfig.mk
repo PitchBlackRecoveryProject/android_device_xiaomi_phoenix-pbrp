@@ -143,3 +143,7 @@ PLATFORM_VERSION := 16.1.0
 TW_DELAY_TOUCH_INIT_MS := 2000
 PB_DEVICE_RATIO := "20:9"
 TW_INCLUDE_RESETPROP := true
+
+BOARD_AVB_RECOVERY_ADD_HASH_FOOTER_ARGS += \
+--prop com.android.build.boot.os_version:$(PLATFORM_VERSION) \
+--prop com.android.build.boot.security_patch:$(PLATFORM_SECURITY_PATCH) 
