@@ -24,13 +24,13 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
+
+# Qcom TWRP Default Decryption
 import /init.recovery.qcom_decrypt.rc
 
+#on init
+#    setprop prepdecrypt.loglevel 2
+    
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
-
-on property:sys.usb.config=fastboot
-    start servicemanager
-    start hwservicemanager
-    restart fastbootd
