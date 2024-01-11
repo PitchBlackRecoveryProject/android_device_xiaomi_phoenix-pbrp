@@ -144,3 +144,6 @@ TW_CUSTOM_BATTERY_POS := "600"
 TWRP_INCLUDE_LOGCAT := true
 # TWRP Debug Flags
 TARGET_USES_LOGD := true
+
+# PBRP Specific
+PB_TORCH_PATH := "/sys/class/leds/led:torch_0"
